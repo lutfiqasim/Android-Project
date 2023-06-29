@@ -1,0 +1,69 @@
+{
+  "project_info": {
+    "project_number": "892685446572",
+    "firebase_url": "https://chatproject-d763d-default-rtdb.firebaseio.com",
+    "project_id": "chatproject-d763d",
+    "storage_bucket": "chatproject-d763d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:892685446572:android:e1cc306dc97ceeb4dd9e09",
+        "android_client_info": {
+          "package_name": "edu.birzeit.chatproject"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "892685446572-n8h5m62vka709018s698qrnive23q3g7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBeUnQQPch5hO6bHff7eOQgOGe_oJgoj7g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "892685446572-n8h5m62vka709018s698qrnive23q3g7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:892685446572:android:fb1b23b3f0e01498dd9e09",
+        "android_client_info": {
+          "package_name": "edu.birzeit.project_chat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "892685446572-n8h5m62vka709018s698qrnive23q3g7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBeUnQQPch5hO6bHff7eOQgOGe_oJgoj7g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "892685446572-n8h5m62vka709018s698qrnive23q3g7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
