@@ -1,0 +1,796 @@
+<!-- activity_main.xml -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingBottom="16dp"
+    android:background="@android:color/white"
+    tools:context=".ScheduleWindow">
+
+    <!-- Schedule View -->
+
+    <Button
+        android:id="@+id/btn_add_course"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="13dp"
+        android:onClick="showAddCourseDialog"
+        android:text="Add Course" />
+
+    <TextView
+        android:id="@+id/text_monday"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btn_add_course"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="8dp"
+        android:text="Monday"
+        android:textColor="@color/black"
+        android:textSize="18sp" />
+
+    <LinearLayout
+        android:id="@+id/mondaySlotsLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/text_monday"
+        android:layout_alignEnd="@id/text_monday"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/Monday8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text=""
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/Monday9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text=""
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/Monday10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text=""
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/Monday11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text=""
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/Monday12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text=""
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/Monday13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text=""
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/Monday14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text=""
+
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/Monday15"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text=""
+
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/Monday16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text=""
+
+            android:textColor="@color/black" />
+
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/line_vertical_1"
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/btn_add_course"
+        android:layout_marginStart="15dp"
+        android:layout_marginLeft="2dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:layout_toRightOf="@+id/text_monday"
+        android:background="@android:color/black" />
+
+    <TextView
+        android:id="@+id/text_tuesday"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btn_add_course"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="8dp"
+        android:layout_toRightOf="@+id/text_monday"
+        android:text="Tuesday"
+        android:textColor="@color/black"
+        android:textSize="18sp" />
+
+    <LinearLayout
+        android:id="@+id/tuesdaySlotsLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/text_monday"
+        android:layout_alignEnd="@id/text_tuesday"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/Tuesday8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text=""
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/Tuesday9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text=""
+
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/Tuesday10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text=""
+
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/Tuesday11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/Tuesday12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text=""
+
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/Tuesday13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text=""
+
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/Tuesday14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text=""
+
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/Tuesday15"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text=""
+
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/Tuesday16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text=""
+
+            android:textColor="@color/black" />
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/line_vertical_2"
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/btn_add_course"
+        android:layout_marginStart="15dp"
+        android:layout_marginLeft="2dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:layout_toEndOf="@+id/text_tuesday"
+        android:layout_toRightOf="@+id/text_monday"
+        android:background="@android:color/black" />
+
+
+    <TextView
+        android:id="@+id/text_wednesday"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btn_add_course"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="8dp"
+        android:layout_toRightOf="@+id/text_tuesday"
+        android:text="Wednesday"
+        android:textColor="@color/black"
+        android:textSize="18sp" />
+
+    <LinearLayout
+        android:id="@+id/wednesdaySlotsLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/text_monday"
+        android:layout_alignEnd="@id/text_wednesday"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/wednesday8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text=""
+
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/wednesday9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text=""
+
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/wednesday10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+
+            android:text=""
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/wednesday11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+
+            android:text=""
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/wednesday12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text=""
+
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/wednesday13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text=""
+
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/wednesday14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text=""
+
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/wednesday15"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text=""
+
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/wednesday16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text=""
+
+            android:textColor="@color/black" />
+
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/line_vertical_3"
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/btn_add_course"
+        android:layout_marginStart="15dp"
+        android:layout_marginLeft="2dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:layout_toEndOf="@+id/text_wednesday"
+        android:layout_toRightOf="@+id/text_monday"
+        android:background="@android:color/black" />
+
+    <TextView
+        android:id="@+id/text_thursday"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btn_add_course"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="8dp"
+        android:layout_toRightOf="@+id/text_wednesday"
+        android:text="Thursday"
+        android:textColor="@color/black"
+        android:textSize="18sp" />
+
+    <LinearLayout
+        android:id="@+id/thursdaySlotsLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/text_monday"
+        android:layout_alignEnd="@id/text_thursday"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/thursday8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text=""
+
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/thursday9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text=""
+
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/thursday10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text=""
+
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/thursday11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text=""
+
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/thursday12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text=""
+
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/thursday1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text=""
+
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/thursday2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text=""
+
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/thursday3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text=""
+
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/thursday4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text=""
+
+            android:textColor="@color/black" />
+
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/line_vertical_4"
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/btn_add_course"
+        android:layout_marginStart="15dp"
+        android:layout_marginLeft="2dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:layout_toEndOf="@+id/text_thursday"
+        android:layout_toRightOf="@+id/text_monday"
+        android:background="@android:color/black" />
+
+    <TextView
+        android:id="@+id/text_saturday"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btn_add_course"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="8dp"
+        android:layout_toRightOf="@+id/text_thursday"
+        android:text="Saturday"
+        android:textColor="@color/black"
+        android:textSize="18sp" />
+
+    <LinearLayout
+        android:id="@+id/saturdaySlotsLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/text_monday"
+        android:layout_alignEnd="@id/text_saturday"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/saturday8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text=""
+
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/saturday9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text=""
+
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/saturday10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text=""
+
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/saturday11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text=""
+
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/saturday12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text=""
+
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/saturday13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text=""
+
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/saturday14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/saturday15"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text=""
+
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/saturday16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text=""
+
+            android:textColor="@color/black" />
+
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/line_vertical_5"
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/btn_add_course"
+        android:layout_marginStart="15dp"
+        android:layout_marginLeft="2dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:layout_toEndOf="@+id/text_saturday"
+        android:layout_toRightOf="@+id/text_monday"
+        android:background="@android:color/black" />
+
+
+    <TextView
+        android:id="@+id/text_time_8am"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/text_monday"
+        android:layout_alignParentLeft="true"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="4dp"
+        android:text="8 AM"
+        android:textColor="@color/black"
+        android:textSize="14sp" />
+
+    <View
+        android:id="@+id/line_horizontal_1"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/text_time_8am"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="32dp"
+        android:background="@android:color/black" />
+
+    <TextView
+        android:id="@+id/text_time_9am"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/text_time_8am"
+        android:layout_alignParentLeft="true"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:text="9 AM"
+        android:textColor="@color/black"
+        android:textSize="14sp" />
+
+    <View
+        android:id="@+id/line_horizontal_2"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/text_time_9am"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="32dp"
+        android:background="@android:color/black" />
+
+    <TextView
+        android:id="@+id/text_time_10am"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/text_time_9am"
+        android:layout_alignParentLeft="true"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:text="10 AM"
+        android:textColor="@color/black"
+        android:textSize="14sp" />
+
+    <View
+        android:id="@+id/line_horizontal_3"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/text_time_10am"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="32dp"
+        android:background="@android:color/black" />
+
+    <TextView
+        android:id="@+id/text_time_11am"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/text_time_10am"
+        android:layout_alignParentLeft="true"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:text="11 AM"
+        android:textColor="@color/black"
+        android:textSize="14sp" />
+
+    <View
+        android:id="@+id/line_horizontal_4"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/text_time_11am"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="32dp"
+        android:background="@android:color/black" />
+
+    <TextView
+        android:id="@+id/text_time_12pm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/text_time_11am"
+        android:layout_alignParentLeft="true"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:text="12 PM"
+        android:textColor="@color/black"
+        android:textSize="14sp" />
+
+    <View
+        android:id="@+id/line_horizontal_5"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/text_time_12pm"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="32dp"
+        android:background="@android:color/black" />
+
+    <TextView
+        android:id="@+id/text_time_1pm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/text_time_12pm"
+        android:layout_alignParentLeft="true"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:text="1 PM"
+        android:textColor="@color/black"
+        android:textSize="14sp" />
+
+    <View
+        android:id="@+id/line_horizontal_6"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/text_time_1pm"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="32dp"
+        android:background="@android:color/black" />
+
+    <TextView
+        android:id="@+id/text_time_2pm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/text_time_1pm"
+        android:layout_alignParentLeft="true"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:text="2 PM"
+        android:textColor="@color/black"
+        android:textSize="14sp" />
+
+    <View
+        android:id="@+id/line_horizontal_7"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/text_time_2pm"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="32dp"
+        android:background="@android:color/black" />
+
+    <TextView
+        android:id="@+id/text_time_3pm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/text_time_2pm"
+        android:layout_alignParentLeft="true"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:text="3 PM"
+        android:textColor="@color/black"
+        android:textSize="14sp" />
+
+    <View
+        android:id="@+id/line_horizontal_8"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/text_time_3pm"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="32dp"
+        android:background="@android:color/black" />
+
+    <TextView
+        android:id="@+id/text_time_4pm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/text_time_3pm"
+        android:layout_alignParentLeft="true"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:text="4 PM"
+        android:textColor="@color/black"
+        android:textSize="14sp" />
+
+    <View
+        android:id="@+id/line_horizontal_9"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/text_time_4pm"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="32dp"
+        android:background="@android:color/black" />
+    <!-- Add your schedule view here -->
+
+</RelativeLayout>

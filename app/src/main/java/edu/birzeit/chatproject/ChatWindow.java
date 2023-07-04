@@ -6,6 +6,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -25,6 +26,7 @@ import com.google.firebase.database.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CountDownLatch;
 
 public class ChatWindow extends AppCompatActivity {
     //    __________
@@ -56,40 +58,47 @@ public class ChatWindow extends AppCompatActivity {
         messageAdapter = new MessageAdapter(messageList);
         recyclerView.setAdapter(messageAdapter);
 
-        //__________________
-        DatabaseReference messagesRef = database.getReference().child("GroupChats").child(groupId).child("messages");
-        messagesRef.addChildEventListener(new ChildEventListener() {
-            @Override
-            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String previousChildName) {
-                MessageModel messageModel = dataSnapshot.getValue(MessageModel.class);
-                messageList.add(messageModel);
-                messageAdapter.notifyDataSetChanged();
-                Log.d("itemCount", messageAdapter.getItemCount() + "");
-                recyclerView.scrollToPosition(messageAdapter.getItemCount() - 1);
-            }
-
-            @Override
-            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String previousChildName) {
-                // Handle changes to existing messages if needed
-            }
-
-            @Override
-            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
-                // Handle message removal if needed
-            }
-
-            @Override
-            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String previousChildName) {
-                // Handle message movement if needed
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                // Handle any database error
-            }
-        });
-
+        //__________________ Getting data in same thread
+//        DatabaseReference messagesRef = database.getReference().child("GroupChats").child(groupId).child("messages");
+//        messagesRef.addChildEventListener(new ChildEventListener() {
+//            @Override
+//            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String previousChildName) {
+//                MessageModel messageModel = dataSnapshot.getValue(MessageModel.class);
+//                messageList.add(messageModel);
+//                messageAdapter.notifyDataSetChanged();
+//                Log.d("itemCount", messageAdapter.getItemCount() + "");
+//                recyclerView.scrollToPosition(messageAdapter.getItemCount() - 1);
+//            }
+//
+//            @Override
+//            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String previousChildName) {
+//                // Handle changes to existing messages if needed
+//            }
+//
+//            @Override
+//            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+//                // Handle message removal if needed
+//            }
+//
+//            @Override
+//            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String previousChildName) {
+//                // Handle message movement if needed
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError databaseError) {
+//                // Handle any database error
+//            }
+//        });
+//      _____________________
         // ..
+        try {
+            FetchMessagesTask fetchMessagesTask = new FetchMessagesTask();
+            fetchMessagesTask.execute();
+        } catch (Exception e) {
+            Log.d("FirebaseRetrivingData", e.toString());
+        }
+
         sendbtnn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -120,5 +129,67 @@ public class ChatWindow extends AppCompatActivity {
 //        messageAdapter.notifyDataSetChanged();
     }
 
+    private class FetchMessagesTask extends AsyncTask<Void, Void, List<MessageModel>> {
+        @Override
+        protected List<MessageModel> doInBackground(Void... params) {
+            DatabaseReference messagesRef = database.getReference().child("GroupChats").child(groupId).child("messages");
 
+
+//                       ________________________
+            //Latch is used here as a way to tell that first data has been retrived from DB
+            //to wait for the initial data retrieval from Firebase before updating the UI
+            //Note: its like a way to tell that data has been retrived and start adding it UI so no update will happen before retriveing first data
+//            final CountDownLatch latch = new CountDownLatch(1);//
+//            messageList = new ArrayList<>();
+//            ________________________
+
+
+            messagesRef.addChildEventListener(new ChildEventListener() {
+                @Override
+                public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String previousChildName) {
+                    MessageModel messageModel = dataSnapshot.getValue(MessageModel.class);
+                    messageList.add(messageModel);
+                    // Notify the UI thread when a child is added
+                    publishProgress();
+                }
+
+                @Override
+                public void onChildChanged(@NonNull DataSnapshot snapshot, @androidx.annotation.Nullable String previousChildName) {
+                }
+
+                @Override
+                public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+
+                }
+
+                @Override
+                public void onChildMoved(@NonNull DataSnapshot snapshot, @androidx.annotation.Nullable String previousChildName) {
+
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                    Toast.makeText(ChatWindow.this, "Check Internet connection", Toast.LENGTH_SHORT).show();
+
+                }
+            });
+
+
+            return messageList;
+        }
+
+        @Override
+        protected void onProgressUpdate(Void... values) {
+            // Update the UI with the new data
+            messageAdapter.notifyDataSetChanged();
+            //Scroll to last added data
+            recyclerView.scrollToPosition(messageAdapter.getItemCount() - 1);
+        }
+
+        @Override
+        protected void onPostExecute(List<MessageModel> messageList) {
+            // Just Makes sure updated to latest message
+            recyclerView.scrollToPosition(messageAdapter.getItemCount() - 1);
+        }
+    }
 }
