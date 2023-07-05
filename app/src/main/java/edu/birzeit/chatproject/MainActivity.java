@@ -17,6 +17,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class MainActivity extends AppCompatActivity {
+
     //Note we need to integrate this login-signup with a better view first:),
     //And I need you to link this with mysql so i can also check for logins in firebase authintecation
     //We need Email and password to be saved in sharedPreferences and
