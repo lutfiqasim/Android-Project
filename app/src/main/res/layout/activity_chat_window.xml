@@ -85,10 +85,10 @@
                 android:id="@+id/textmsg"
                 android:layout_width="320dp"
                 android:layout_height="45dp"
-                android:background="@null"
+                android:background="@color/white"
                 android:fontFamily="sans-serif-black"
                 android:hint="Type message..."
-                android:textColor="@color/black"
+                android:textColor="@android:color/black"
                 android:paddingStart="13dp" />
 
         </androidx.cardview.widget.CardView>
@@ -100,7 +100,7 @@
             android:layout_marginStart="6.40dp"
             android:layout_marginEnd="6.50dp"
             android:layout_weight="1"
-            app:cardBackgroundColor="#D6E8EE"
+            app:cardBackgroundColor="@color/white"
             app:cardCornerRadius="32.50dp">
 
             <ImageView

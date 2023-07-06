@@ -27,10 +27,11 @@ public class MessageAdapter extends RecyclerView.Adapter {
     @Override
     public MessageViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         if (viewType == ItemSend) {
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_message, parent, false);
-            return new MessageViewHolder(view);
-        } else {
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_sender_message, parent, false);
+            return new MessageViewHolder(view);
+
+        } else {
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_message, parent, false);
             return new MessageViewHolder(view);
         }
     }
@@ -38,11 +39,12 @@ public class MessageAdapter extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         MessageModel message = messageList.get(position);
-        if (holder.getClass() == MessageViewHolder.class) {
-            MessageViewHolder viewHolder = (MessageViewHolder) holder;
-            viewHolder.bind(message);
-        } else {
+        if (holder.getClass() == SenderViewHolder.class) {
             SenderViewHolder viewHolder = (SenderViewHolder) holder;
+            viewHolder.bind(message);
+
+        } else {
+            MessageViewHolder viewHolder = (MessageViewHolder) holder;
             viewHolder.bind(message);
         }
     }
