@@ -105,7 +105,7 @@ public class ChatWindow extends AppCompatActivity {
                 if (textmsg.getText().toString().isEmpty()) {
                     Toast.makeText(ChatWindow.this, "Enter a message first", Toast.LENGTH_SHORT).show();
                 } else {
-                    String msg = textmsg.getText().toString();
+                    String msg = textmsg.getText().toString().trim();
                     textmsg.setText("");
                     String senderId = firebaseAuth.getUid(), messageText = msg.toString();
                     Log.d("Hi", msg.toString());

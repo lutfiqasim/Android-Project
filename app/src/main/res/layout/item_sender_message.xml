@@ -7,8 +7,8 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/imageCard"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:layout_alignParentRight="true"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
@@ -21,7 +21,7 @@
         <ImageView
             android:id="@+id/senderImage"
             android:layout_width="match_parent"
-            android:layout_height="80dp"
+            android:layout_height="60dp"
             android:scaleType="centerCrop"
             android:src="@drawable/photocamera" />
     </androidx.cardview.widget.CardView>
@@ -51,6 +51,8 @@
         android:layout_marginTop="10dp"
         android:layout_marginRight="-15dp"
         android:layout_marginBottom="-5dp"
+        android:textColor="@android:color/black"
+        android:layout_marginVertical="4dp"
         android:layout_toLeftOf="@id/imageCard"
         android:fontFamily="sans-serif"
         android:paddingStart="3dp"
