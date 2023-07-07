@@ -57,41 +57,6 @@ public class ChatWindow extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         messageAdapter = new MessageAdapter(messageList);
         recyclerView.setAdapter(messageAdapter);
-
-        //__________________ Getting data in same thread
-//        DatabaseReference messagesRef = database.getReference().child("GroupChats").child(groupId).child("messages");
-//        messagesRef.addChildEventListener(new ChildEventListener() {
-//            @Override
-//            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String previousChildName) {
-//                MessageModel messageModel = dataSnapshot.getValue(MessageModel.class);
-//                messageList.add(messageModel);
-//                messageAdapter.notifyDataSetChanged();
-//                Log.d("itemCount", messageAdapter.getItemCount() + "");
-//                recyclerView.scrollToPosition(messageAdapter.getItemCount() - 1);
-//            }
-//
-//            @Override
-//            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String previousChildName) {
-//                // Handle changes to existing messages if needed
-//            }
-//
-//            @Override
-//            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
-//                // Handle message removal if needed
-//            }
-//
-//            @Override
-//            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String previousChildName) {
-//                // Handle message movement if needed
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError databaseError) {
-//                // Handle any database error
-//            }
-//        });
-//      _____________________
-        // ..
         try {
             FetchMessagesTask fetchMessagesTask = new FetchMessagesTask();
             fetchMessagesTask.execute();
@@ -133,8 +98,6 @@ public class ChatWindow extends AppCompatActivity {
         @Override
         protected List<MessageModel> doInBackground(Void... params) {
             DatabaseReference messagesRef = database.getReference().child("GroupChats").child(groupId).child("messages");
-
-
 //                       ________________________
             //Latch is used here as a way to tell that first data has been retrived from DB
             //to wait for the initial data retrieval from Firebase before updating the UI
@@ -142,8 +105,6 @@ public class ChatWindow extends AppCompatActivity {
 //            final CountDownLatch latch = new CountDownLatch(1);//
 //            messageList = new ArrayList<>();
 //            ________________________
-
-
             messagesRef.addChildEventListener(new ChildEventListener() {
                 @Override
                 public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String previousChildName) {
