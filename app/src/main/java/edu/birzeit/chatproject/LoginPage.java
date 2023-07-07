@@ -33,6 +33,7 @@ public class LoginPage extends AppCompatActivity {
     //And I need you to link this with mysql so i can also check for logins in firebase authintecation
     //We need Email and password to be saved in sharedPreferences and
     //Move with intents (userName), so we could use it in system messsages
+    //Comment for github
     EditText email;
     EditText pass;
     Button signIn;
