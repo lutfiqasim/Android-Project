@@ -13,16 +13,24 @@
         android:screenOrientation="portrait"
         android:supportsRtl="true"
         android:theme="@style/Theme.ChatProject"
+        android:usesCleartextTraffic="true"
         tools:targetApi="31">
+        <activity
+            android:name=".Register"
+            android:exported="false" />
+        <activity
+            android:name=".MainPageActivity"
+            android:exported="false" />
         <activity
             android:name=".ChatWindow"
             android:exported="false"
             android:screenOrientation="portrait" />
-        <activity android:name=".ScheduleWindow"
+        <activity
+            android:name=".ScheduleWindow"
             android:exported="false"
             android:screenOrientation="landscape" />
         <activity
-            android:name=".MainActivity"
+            android:name=".LoginPage"
             android:exported="true"
             android:screenOrientation="portrait">
             <intent-filter>
