@@ -44,14 +44,14 @@ public class LoginPage extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.login_page);
         email = findViewById(R.id.username);
         pass = findViewById(R.id.password);
         signIn = findViewById(R.id.login);
         singUP = findViewById(R.id.SignUP);
         firebaseAuth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();
-        checkLoggedIn();
+//        checkLoggedIn();
         singUP.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -88,7 +88,7 @@ public class LoginPage extends AppCompatActivity {
         boolean isLoggedIn = sharedPreferences.getBoolean("loginStatus", false);
         if (isLoggedIn) {
             //Make this to mainActivity hazem
-            Intent intent = new Intent(this, ChatWindow.class);
+            Intent intent = new Intent(this, HomePage.class);
             startActivity(intent);
             finish();
         }
@@ -96,7 +96,7 @@ public class LoginPage extends AppCompatActivity {
 
     //Check for logging in or not in MySQL DATA base
     private class SignupAsyncTask extends AsyncTask<String, Void, String> {
-        private static final String SIGNUP_URL = "http://192.168.1.44:1234/androidProj/login.php";
+        private static final String SIGNUP_URL = "http://192.168.1.26/androidProj/login.php";
         private String emailU;
         private String passwordU;
 
@@ -153,7 +153,7 @@ public class LoginPage extends AppCompatActivity {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()) {
-                        Intent intent = new Intent(LoginPage.this, ChatWindow.class);
+                        Intent intent = new Intent(LoginPage.this, HomePage.class);
                         intent.putExtra("User-id", firebaseAuth.getUid());
                         SharedPreferences sharedPreferences = getSharedPreferences("LoggedIn", Context.MODE_PRIVATE);
                         SharedPreferences.Editor editor = sharedPreferences.edit();
