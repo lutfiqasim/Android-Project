@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    tools:context=".ChatFragment">
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#D6E8EE"
+        tools:actionBarNavMode="list"
+        >
+
+        <LinearLayout
+            android:id="@+id/linearChat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/top_background"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/imageCard"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="9.10dp"
+                android:elevation="12dp"
+                app:cardBackgroundColor="#D6E8EE"
+                app:cardCornerRadius="40dp"
+
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintVertical_bias="0.226">
+
+                <ImageView
+                    android:id="@+id/groupPhoto"
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/user" />
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/GroupName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
+                android:fontFamily="sans-serif-black"
+                android:gravity="center"
+                android:text="Group Name"
+                android:textColor="@color/black"
+                android:textSize="18dp" />
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="520dp"
+            android:layout_below="@+id/linearChat"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="140dp"
+            android:layout_marginBottom="24dp"
+            android:padding="12dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="58.58dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="3dp"
+            android:layout_marginTop="2.60dp"
+            android:layout_marginEnd="2.6dp"
+            android:layout_marginBottom="2.60dp"
+            android:orientation="horizontal">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="45.50dp"
+                android:layout_marginStart="6.40dp"
+                android:layout_marginEnd="5.50dp"
+                android:layout_weight="1"
+                app:cardBackgroundColor="#D6E8EE"
+                app:cardCornerRadius="32.50dp">
+
+                <EditText
+                    android:id="@+id/textmsg"
+                    android:layout_width="320dp"
+                    android:layout_height="45dp"
+                    android:background="@color/white"
+                    android:fontFamily="sans-serif-black"
+                    android:hint="Type message..."
+                    android:textColor="@android:color/black"
+                    android:paddingStart="13dp" />
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/sendbtnn"
+                android:layout_width="110.50dp"
+                android:layout_height="45.50dp"
+                android:layout_marginStart="6.40dp"
+                android:layout_marginEnd="6.50dp"
+                android:layout_weight="1"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="32.50dp">
+
+                <ImageView
+                    android:id="@+id/sendbtnn2"
+                    android:layout_width="15dp"
+                    android:layout_height="10dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/user" />
+
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+</FrameLayout>
