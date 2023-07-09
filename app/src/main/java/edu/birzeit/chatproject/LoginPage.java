@@ -36,7 +36,7 @@ public class LoginPage extends AppCompatActivity {
     EditText email;
     EditText pass;
     Button signIn;
-    TextView singUP;
+    TextView singIN;
     FirebaseAuth firebaseAuth;
     FirebaseDatabase database;
     String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
@@ -48,11 +48,11 @@ public class LoginPage extends AppCompatActivity {
         email = findViewById(R.id.username);
         pass = findViewById(R.id.password);
         signIn = findViewById(R.id.login);
-        singUP = findViewById(R.id.SignUP);
+        singIN = findViewById(R.id.SignUP);
         firebaseAuth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();
 //        checkLoggedIn();
-        singUP.setOnClickListener(new View.OnClickListener() {
+        singIN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(LoginPage.this, Register.class);
@@ -76,8 +76,8 @@ public class LoginPage extends AppCompatActivity {
                     Toast.makeText(LoginPage.this, "Enter valid password", Toast.LENGTH_SHORT).show();
                 } else {
                     //Try logging in
-                    SignINAsyncTask signupAsyncTask = new SignINAsyncTask();
-                    signupAsyncTask.execute(emailU, passU);
+                    SignINAsyncTask signinAsyncTask = new SignINAsyncTask();
+                    signinAsyncTask.execute(emailU, passU);
                 }
             }
         });
@@ -96,7 +96,7 @@ public class LoginPage extends AppCompatActivity {
 
     //Check for logging in or not in MySQL DATA base
     private class SignINAsyncTask extends AsyncTask<String, Void, String> {
-        private static final String SIGNUP_URL = "http://192.168.1.26/androidProj/login.php";
+        private static final String SIGNUP_URL = "http://192.168.1.25:1234/androidProj/login.php";//192.168.1.26
         private String emailU;
         private String passwordU;
 
