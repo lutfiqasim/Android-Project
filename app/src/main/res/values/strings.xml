@@ -17,5 +17,11 @@
         <item>Thursday</item>
         <item>Saturday</item>
     </string-array>
+    <string-array name="majors">
+        <item>Computer Science</item>
+        <item>Electrical Enginering</item>
+        <item>Computer Enginering</item>
+        <item>Cyber Security</item>
+    </string-array>
 
 </resources>

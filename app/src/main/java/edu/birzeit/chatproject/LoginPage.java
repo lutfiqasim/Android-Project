@@ -29,15 +29,13 @@ import java.net.URL;
 import java.net.URLEncoder;
 
 public class LoginPage extends AppCompatActivity {
-    //Note we need to integrate this login-signup with a better view first:),
     //And I need you to link this with mysql so i can also check for logins in firebase authintecation
     //We need Email and password to be saved in sharedPreferences and
     //Move with intents (userName), so we could use it in system messsages
-    //Comment for github
     EditText email;
     EditText pass;
     Button signIn;
-    TextView singUP;
+    TextView singIN;
     FirebaseAuth firebaseAuth;
     FirebaseDatabase database;
     String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
@@ -49,11 +47,11 @@ public class LoginPage extends AppCompatActivity {
         email = findViewById(R.id.username);
         pass = findViewById(R.id.password);
         signIn = findViewById(R.id.login);
-        singUP = findViewById(R.id.SignUP);
+        singIN = findViewById(R.id.SignUP);
         firebaseAuth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();
-        checkLoggedIn();
-        singUP.setOnClickListener(new View.OnClickListener() {
+//        checkLoggedIn();
+        singIN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(LoginPage.this, Register.class);
@@ -77,8 +75,8 @@ public class LoginPage extends AppCompatActivity {
                     Toast.makeText(LoginPage.this, "Enter valid password", Toast.LENGTH_SHORT).show();
                 } else {
                     //Try logging in
-                    SignupAsyncTask signupAsyncTask = new SignupAsyncTask();
-                    signupAsyncTask.execute(emailU, passU);
+                    SignINAsyncTask signinAsyncTask = new SignINAsyncTask();
+                    signinAsyncTask.execute(emailU, passU);
                 }
             }
         });
@@ -96,8 +94,8 @@ public class LoginPage extends AppCompatActivity {
     }
 
     //Check for logging in or not in MySQL DATA base
-    private class SignupAsyncTask extends AsyncTask<String, Void, String> {
-        private static final String SIGNUP_URL = "http://192.168.1.44:1234/androidProj/login.php";
+    private class SignINAsyncTask extends AsyncTask<String, Void, String> {
+        private static final String SIGNIN_URL = "http://192.168.1.25:1234/androidProj/login.php";
         private String emailU;
         private String passwordU;
 
@@ -107,7 +105,8 @@ public class LoginPage extends AppCompatActivity {
             passwordU = strings[1];
 
             try {
-                URL url = new URL(SIGNUP_URL);
+
+                URL url = new URL(SIGNIN_URL);
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 connection.setRequestMethod("POST");
                 connection.setDoOutput(true);
@@ -145,7 +144,7 @@ public class LoginPage extends AppCompatActivity {
                 signInToFireBase();
             } else {
                 Log.e("post", result + "");
-                Toast.makeText(LoginPage.this, "Signup failed. Please try again", Toast.LENGTH_SHORT).show();
+                Toast.makeText(LoginPage.this, "SignIn failed. Please try again", Toast.LENGTH_SHORT).show();
             }
         }
 
