@@ -1,37 +1,176 @@
 package edu.birzeit.chatproject;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLEncoder;
 
 public class Register extends AppCompatActivity {
+    private TextView login;
+    private EditText userName;
+    private EditText email;
+    private EditText pass;
+    private EditText passRe;
+    private Spinner major;
+    private Button signupbtn;
+    private String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+    FirebaseAuth firebaseAuth;
+    FirebaseDatabase database;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-        //        singUP.setOnClickListener(new View.OnClickListener() {
+        //Get needed views items
+        email = findViewById(R.id.rgemail);
+        userName = findViewById(R.id.username);
+        pass = findViewById(R.id.rgpassword);
+        passRe = findViewById(R.id.rgrepassword);
+        major = findViewById(R.id.list_major);
+        signupbtn = findViewById(R.id.signupbutton);
+        login = findViewById(R.id.loginbut);
+
+        login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Register.this, LoginPage.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+        signupbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String Uname = userName.getText().toString();
+                String Uemail = email.getText().toString();
+                String Upass = pass.getText().toString();
+                String reEnterpass = passRe.getText().toString();
+                String Umajor = major.getSelectedItem().toString();
+                if (Uname.matches("")) {
+                    userName.setError("Enter user name");
+                } else if (Uemail.matches("")) {
+                    email.setError("Enter email first");
+                } else if (Upass.matches("")) {
+                    pass.setError("Enter password first");
+                } else if (reEnterpass.matches("")) {
+                    passRe.setError("Re enter password");
+                } else if (!Uemail.matches(emailPattern)) {
+                    Toast.makeText(Register.this, "Enter valid email and password", Toast.LENGTH_SHORT).show();
+                } else if (Upass.length() < 6) {
+                    Toast.makeText(Register.this, "Enter valid password", Toast.LENGTH_SHORT).show();
+                } else if (Upass.equals(reEnterpass)) {
+                    Toast.makeText(Register.this, "Password doesn't match", Toast.LENGTH_SHORT).show();
+                } else {
+                    SignupAsyncTask signupAsyncTask = new SignupAsyncTask();
+                    signupAsyncTask.execute(Uname, Uemail, Upass, Umajor);
+                }
+            }
+        });
+
+
+//                singUP.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View view) {
-
-                /*
-                * String emailU = email.getText().toString();
-                String passU = pass.getText().toString();
-                firebaseAuth.createUserWithEmailAndPassword(emailU, passU).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            Intent intent = new Intent(LoginPage.this, ChatWindow.class);
-                            intent.putExtra("User-id", firebaseAuth.getUid());
-                            startActivity(intent);
-                        } else {
-                            Toast.makeText(LoginPage.this, "Failed to signUP", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
-                *
-                * */
-//            }
+//
+//
+//
+//
+//         }
 //        });
+    }
+
+    //Check for logging in or not in MySQL DATA base
+    private class SignupAsyncTask extends AsyncTask<String, Void, String> {
+        private static final String SIGNUP_URL = "http://192.168.1.25:1234/androidProj/login.php";
+        private String emailU;
+        private String passwordU;
+
+        @Override
+        protected String doInBackground(String... strings) {
+            emailU = strings[0];
+            passwordU = strings[1];
+
+            try {
+                
+                URL url = new URL(SIGNUP_URL);
+                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                connection.setRequestMethod("POST");
+                connection.setDoOutput(true);
+
+                //Build the POST DATA TO BE GIVEN TO PHP
+                StringBuilder data = new StringBuilder();
+                data.append(URLEncoder.encode("email", "UTF-8")).append("=").append(URLEncoder.encode(emailU, "UTF-8"));
+                data.append("&").append(URLEncoder.encode("password", "UTF-8")).append("=")
+                        .append(URLEncoder.encode(passwordU, "UTF-8"));
+                //Send that data
+                OutputStream outputStream = connection.getOutputStream();
+                outputStream.write(data.toString().getBytes("UTF-8"));
+                outputStream.flush();
+                outputStream.close();
+                //Read response NOTE: in php is given as echo
+                BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                StringBuilder response = new StringBuilder();
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    response.append(line);
+                }
+                reader.close();
+                return response.toString();
+
+                //
+            } catch (Exception e) {
+                Log.e("PHPconnection", e.getMessage().toString());
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            if (result != null && result.equals("logged In")) {//For the other uses of firebase i also want to mark user loged in on firebase here
+                signUPToFireBase();
+            } else {
+                Log.e("post", result + "");
+                Toast.makeText(Register.this, "SignUP failed. Please try again", Toast.LENGTH_SHORT).show();
+            }
+        }
+
+        private void signUPToFireBase() {
+            String emailU = email.getText().toString();
+            String passU = pass.getText().toString();
+            firebaseAuth.createUserWithEmailAndPassword(emailU, passU).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    if (task.isSuccessful()) {
+                        Intent intent = new Intent(Register.this, ChatWindow.class);
+                        intent.putExtra("User-id", firebaseAuth.getUid());
+                        startActivity(intent);
+                    } else {
+                        Toast.makeText(Register.this, "Failed to signUP", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+        }
     }
 }
