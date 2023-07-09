@@ -29,7 +29,6 @@ import java.net.URL;
 import java.net.URLEncoder;
 
 public class LoginPage extends AppCompatActivity {
-    //Note we need to integrate this login-signup with a better view first:),
     //And I need you to link this with mysql so i can also check for logins in firebase authintecation
     //We need Email and password to be saved in sharedPreferences and
     //Move with intents (userName), so we could use it in system messsages
@@ -144,7 +143,7 @@ public class LoginPage extends AppCompatActivity {
                 signInToFireBase();
             } else {
                 Log.e("post", result + "");
-                Toast.makeText(LoginPage.this, "Signup failed. Please try again", Toast.LENGTH_SHORT).show();
+                Toast.makeText(LoginPage.this, "SignIn failed. Please try again", Toast.LENGTH_SHORT).show();
             }
         }
 
