@@ -76,7 +76,7 @@ public class LoginPage extends AppCompatActivity {
                     Toast.makeText(LoginPage.this, "Enter valid password", Toast.LENGTH_SHORT).show();
                 } else {
                     //Try logging in
-                    SignupAsyncTask signupAsyncTask = new SignupAsyncTask();
+                    SignINAsyncTask signupAsyncTask = new SignINAsyncTask();
                     signupAsyncTask.execute(emailU, passU);
                 }
             }
@@ -95,7 +95,7 @@ public class LoginPage extends AppCompatActivity {
     }
 
     //Check for logging in or not in MySQL DATA base
-    private class SignupAsyncTask extends AsyncTask<String, Void, String> {
+    private class SignINAsyncTask extends AsyncTask<String, Void, String> {
         private static final String SIGNUP_URL = "http://192.168.1.26/androidProj/login.php";
         private String emailU;
         private String passwordU;
