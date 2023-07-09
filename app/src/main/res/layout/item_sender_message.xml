@@ -37,7 +37,7 @@
         android:layout_marginRight="2dp"
         android:layout_marginBottom="6.50dp"
         android:layout_toLeftOf="@id/imageCard"
-        android:background="#90ee90"
+        android:background="@drawable/backgroun_sender_message"
         android:fontFamily="sans-serif-black"
         android:padding="9.10dp"
         android:text="Chattinnng"

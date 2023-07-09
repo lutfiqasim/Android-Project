@@ -43,7 +43,7 @@ public class LoginPage extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.login_page);
         email = findViewById(R.id.username);
         pass = findViewById(R.id.password);
         signIn = findViewById(R.id.login);
@@ -87,7 +87,7 @@ public class LoginPage extends AppCompatActivity {
         boolean isLoggedIn = sharedPreferences.getBoolean("loginStatus", false);
         if (isLoggedIn) {
             //Make this to mainActivity hazem
-            Intent intent = new Intent(this, ChatWindow.class);
+            Intent intent = new Intent(this, HomePage.class);
             startActivity(intent);
             finish();
         }
@@ -105,7 +105,6 @@ public class LoginPage extends AppCompatActivity {
             passwordU = strings[1];
 
             try {
-
                 URL url = new URL(SIGNIN_URL);
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 connection.setRequestMethod("POST");
@@ -153,7 +152,7 @@ public class LoginPage extends AppCompatActivity {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()) {
-                        Intent intent = new Intent(LoginPage.this, ChatWindow.class);
+                        Intent intent = new Intent(LoginPage.this, HomePage.class);
                         intent.putExtra("User-id", firebaseAuth.getUid());
                         SharedPreferences sharedPreferences = getSharedPreferences("LoggedIn", Context.MODE_PRIVATE);
                         SharedPreferences.Editor editor = sharedPreferences.edit();
