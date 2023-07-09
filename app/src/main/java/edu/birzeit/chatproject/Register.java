@@ -80,7 +80,7 @@ public class Register extends AppCompatActivity {
                     Toast.makeText(Register.this, "Enter valid email and password", Toast.LENGTH_SHORT).show();
                 } else if (Upass.length() < 6) {
                     Toast.makeText(Register.this, "Enter valid password", Toast.LENGTH_SHORT).show();
-                } else if (Upass.equals(reEnterpass)) {
+                } else if (!Upass.equals(reEnterpass)) {
                     Toast.makeText(Register.this, "Password doesn't match", Toast.LENGTH_SHORT).show();
                 } else {
                     SignupAsyncTask signupAsyncTask = new SignupAsyncTask();
@@ -103,25 +103,33 @@ public class Register extends AppCompatActivity {
 
     //Check for logging in or not in MySQL DATA base
     private class SignupAsyncTask extends AsyncTask<String, Void, String> {
-        private static final String SIGNUP_URL = "http://192.168.1.25:1234/androidProj/login.php";
+        private static final String SIGNUP_URL = "http://192.168.1.25:1234/androidProj/signup.php";
         private String emailU;
         private String passwordU;
+        private String Uname;
+        private String Umajor;
+
+        //Uname, Uemail, Upass, Umajor
 
         @Override
         protected String doInBackground(String... strings) {
-            emailU = strings[0];
-            passwordU = strings[1];
-
+            Uname = strings[0];
+            emailU = strings[1];
+            passwordU = strings[2];
+            Umajor = strings[3];
             try {
-                
+
                 URL url = new URL(SIGNUP_URL);
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 connection.setRequestMethod("POST");
                 connection.setDoOutput(true);
 
                 //Build the POST DATA TO BE GIVEN TO PHP
+                //name,specialization,email,password
                 StringBuilder data = new StringBuilder();
-                data.append(URLEncoder.encode("email", "UTF-8")).append("=").append(URLEncoder.encode(emailU, "UTF-8"));
+                data.append(URLEncoder.encode("name", "UTF-8")).append("=").append(URLEncoder.encode(Uname, "UTF-8"));
+                data.append("&").append(URLEncoder.encode("major", "UTF-8")).append("=").append(URLEncoder.encode(Umajor, "UTF-8"));
+                data.append("&").append(URLEncoder.encode("email", "UTF-8")).append("=").append(URLEncoder.encode(emailU, "UTF-8"));
                 data.append("&").append(URLEncoder.encode("password", "UTF-8")).append("=")
                         .append(URLEncoder.encode(passwordU, "UTF-8"));
                 //Send that data
@@ -148,29 +156,37 @@ public class Register extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String result) {
-            if (result != null && result.equals("logged In")) {//For the other uses of firebase i also want to mark user loged in on firebase here
-                signUPToFireBase();
+            if (result != null && result.equals("Signed up successfully")) {//For the other uses of firebase i also want to mark user loged in on firebase here
+                signUpToFirebase();
             } else {
                 Log.e("post", result + "");
                 Toast.makeText(Register.this, "SignUP failed. Please try again", Toast.LENGTH_SHORT).show();
             }
         }
 
-        private void signUPToFireBase() {
-            String emailU = email.getText().toString();
-            String passU = pass.getText().toString();
-            firebaseAuth.createUserWithEmailAndPassword(emailU, passU).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                @Override
-                public void onComplete(@NonNull Task<AuthResult> task) {
-                    if (task.isSuccessful()) {
-                        Intent intent = new Intent(Register.this, ChatWindow.class);
-                        intent.putExtra("User-id", firebaseAuth.getUid());
-                        startActivity(intent);
-                    } else {
-                        Toast.makeText(Register.this, "Failed to signUP", Toast.LENGTH_SHORT).show();
-                    }
-                }
-            });
+        private void signUpToFirebase() {
+
+            firebaseAuth = FirebaseAuth.getInstance();
+            firebaseAuth.createUserWithEmailAndPassword(emailU, passwordU)
+                    .addOnCompleteListener(Register.this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+                                // Sign up success
+                                Intent intent = new Intent(Register.this, ChatWindow.class);
+                                intent.putExtra("User-id", firebaseAuth.getUid());
+                                startActivity(intent);
+                            } else {
+                                // Sign up failed
+                                if (task.getException() != null) {
+                                    Toast.makeText(Register.this, "Failed to sign up: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                                } else {
+                                    Toast.makeText(Register.this, "Failed to sign up.", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        }
+                    });
         }
+
     }
 }
