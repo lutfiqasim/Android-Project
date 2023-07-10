@@ -65,7 +65,7 @@ public class Register extends AppCompatActivity {
             public void onClick(View view) {
 
                 String Uname = userName.getText().toString();
-                String Uemail = email.getText().toString();
+                String Uemail = email.getText().toString().toLowerCase();
                 String Upass = pass.getText().toString();
                 String reEnterpass = passRe.getText().toString();
                 String Umajor = major.getSelectedItem().toString();
@@ -105,7 +105,8 @@ public class Register extends AppCompatActivity {
 
     //Check for logging in or not in MySQL DATA base
     private class SignupAsyncTask extends AsyncTask<String, Void, String> {
-        private static final String SIGNUP_URL = "http://192.168.1.111/androidProj/signup.php";//192.168.1.25:1234
+
+        private static final String SIGNUP_URL = "http://192.168.1.44:1234/androidProj/signup.php";
         private String emailU;
         private String passwordU;
         private String Uname;
@@ -175,8 +176,8 @@ public class Register extends AppCompatActivity {
                             if (task.isSuccessful()) {
                                 // Sign up success
                                 Intent intent = new Intent(Register.this, LoginPage.class);
-                                intent.putExtra("User-id", firebaseAuth.getUid());
                                 startActivity(intent);
+                                finish();
                             } else {
                                 // Sign up failed
                                 if (task.getException() != null) {

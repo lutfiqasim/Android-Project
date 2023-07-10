@@ -7,6 +7,7 @@ import java.util.Locale;
 public class MessageModel {
     private String messageId;
     private String senderId;
+    private String senderName;
     private String messageText;
 
 
@@ -16,10 +17,11 @@ public class MessageModel {
 
     }
 
-    public MessageModel(String messageId, String senderId, String messageText) {
+    public MessageModel(String messageId, String senderName, String senderId, String messageText) {
         this.messageId = messageId;
         this.senderId = senderId;
         this.messageText = messageText;
+        this.senderName = senderName;
         this.timestamp = getTimeDate();
     }
 
@@ -58,6 +60,13 @@ public class MessageModel {
         }
     }
 
+    public String getSenderName() {
+        return senderName;
+    }
+
+    public void setSenderName(String senderName) {
+        this.senderName = senderName;
+    }
 
     public String getTimestamp() {
         return timestamp;

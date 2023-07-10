@@ -82,7 +82,7 @@ public class MessageAdapter extends RecyclerView.Adapter {
             senderImage.setImageResource(R.drawable.photocamera);
             messageTextView.setText(message.getMessageText());
             time.setText(message.getTimestamp() + "");
-            senderName.setText(message.getSenderId());//Change it to name using sql
+            senderName.setText(message.getSenderName());//Change it to name using sql
         }
     }
 
