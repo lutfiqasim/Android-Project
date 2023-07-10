@@ -149,7 +149,7 @@ public class LoginPage extends AppCompatActivity {
                     String name = studentObject.getString("name");
                     String email = studentObject.getString("email");
                     String password = studentObject.getString("password");
-
+                    String major = studentObject.getString("specialization");
                     // Save the data to SharedPreferences
                     SharedPreferences sharedPreferences = getSharedPreferences("LoggedIn", Context.MODE_PRIVATE);
                     SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -157,6 +157,7 @@ public class LoginPage extends AppCompatActivity {
                     editor.putString("name", name);
                     editor.putString("email", email);
                     editor.putString("password", password);
+                    editor.putString("major", major);
                     editor.apply();
                     // Proceed with Firebase sign-in
                     signInToFireBase();

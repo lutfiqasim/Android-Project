@@ -6,6 +6,8 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -35,6 +37,7 @@ public class ChatWindow extends AppCompatActivity {
     RecyclerView recyclerView;
     MessageAdapter messageAdapter;
     List<MessageModel> messageList = new ArrayList<>();
+    String senderName;
 
     //  _______________
     String groupId = "GroupChat1"; // this should be got based on which group user opens
@@ -57,6 +60,10 @@ public class ChatWindow extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         messageAdapter = new MessageAdapter(messageList);
         recyclerView.setAdapter(messageAdapter);
+        SharedPreferences sharedPreferences = getSharedPreferences("LoggedIn", Context.MODE_PRIVATE);
+//        groupId = sharedPreferences.getString("major", "Computer Science");
+        senderName = sharedPreferences.getString("name", "Anonymous");
+
         try {
             FetchMessagesTask fetchMessagesTask = new FetchMessagesTask();
             fetchMessagesTask.execute();
@@ -73,7 +80,7 @@ public class ChatWindow extends AppCompatActivity {
                     String msg = textmsg.getText().toString().trim();
                     textmsg.setText("");
                     String senderId = firebaseAuth.getUid(), messageText = msg.toString();
-                    Log.d("Hi", msg.toString());
+//                    Log.d("Hi", msg.toString());
                     addMessageToGroupChat(groupId, senderId, messageText);
                 }
             }
@@ -86,11 +93,10 @@ public class ChatWindow extends AppCompatActivity {
         String messageId = messageRef.push().getKey();
 
         // Create a message object
-        MessageModel message = new MessageModel(messageId, senderId, messageText);
+        MessageModel message = new MessageModel(messageId, senderName, senderId, messageText);
 
         // Save the message to the database
         messageRef.child(messageId).setValue(message);
-
 //        messageAdapter.notifyDataSetChanged();
     }
 
