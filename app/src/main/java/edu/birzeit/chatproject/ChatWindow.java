@@ -61,7 +61,7 @@ public class ChatWindow extends AppCompatActivity {
         messageAdapter = new MessageAdapter(messageList);
         recyclerView.setAdapter(messageAdapter);
         SharedPreferences sharedPreferences = getSharedPreferences("LoggedIn", Context.MODE_PRIVATE);
-//        groupId = sharedPreferences.getString("major", "Computer Science");
+        groupId = sharedPreferences.getString("major", "Computer Science");
         senderName = sharedPreferences.getString("name", "Anonymous");
 
         try {
