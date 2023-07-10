@@ -95,7 +95,7 @@ public class LoginPage extends AppCompatActivity {
 
     //Check for logging in or not in MySQL DATA base
     private class SignINAsyncTask extends AsyncTask<String, Void, String> {
-        private static final String SIGNIN_URL = "http://192.168.1.25:1234/androidProj/login.php";
+        private static final String SIGNIN_URL = "http://192.168.1.111/androidProj/login.php";//192.168.1.25:1234
         private String emailU;
         private String passwordU;
 
