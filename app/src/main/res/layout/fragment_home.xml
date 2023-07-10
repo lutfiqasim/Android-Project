@@ -58,7 +58,7 @@
 
 
                 <LinearLayout
-                    android:id="@+id/schedule"
+                    android:id="@+id/cs"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_margin="10dp"
@@ -98,7 +98,7 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/settings"
+                    android:id="@+id/ce"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_margin="10dp"
@@ -148,7 +148,7 @@
 
 
                 <LinearLayout
-                    android:id="@+id/encs"
+                    android:id="@+id/css"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_margin="10dp"
@@ -188,7 +188,7 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/enee"
+                    android:id="@+id/ee"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_margin="10dp"

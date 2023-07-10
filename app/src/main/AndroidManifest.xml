@@ -40,6 +40,10 @@
             android:exported="false"
             android:screenOrientation="landscape" />
         <activity
+            android:name=".CourseActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".LoginPage"
             android:exported="true"
             android:screenOrientation="portrait">

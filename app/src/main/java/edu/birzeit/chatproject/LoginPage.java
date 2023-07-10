@@ -50,7 +50,7 @@ public class LoginPage extends AppCompatActivity {
         singIN = findViewById(R.id.SignUP);
         firebaseAuth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();
-//        checkLoggedIn();
+        checkLoggedIn();
         singIN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -95,7 +95,7 @@ public class LoginPage extends AppCompatActivity {
 
     //Check for logging in or not in MySQL DATA base
     private class SignINAsyncTask extends AsyncTask<String, Void, String> {
-        private static final String SIGNIN_URL = "http://192.168.1.25:1234/androidProj/login.php";
+        private static final String SIGNIN_URL = "http://192.168.1.47/androidProj/login.php";//192.168.1.25:1234
         private String emailU;
         private String passwordU;
 
