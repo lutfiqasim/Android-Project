@@ -46,17 +46,19 @@
 
     <TextView
         android:id="@+id/senderName"
-        android:layout_width="120dp"
+        android:layout_width="80dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="-15dp"
-        android:layout_marginBottom="-5dp"
-        android:textColor="@android:color/black"
+        android:layout_alignParentRight="true"
         android:layout_marginVertical="4dp"
-        android:layout_toLeftOf="@id/imageCard"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="5dp"
         android:fontFamily="sans-serif"
-        android:paddingStart="3dp"
+        android:paddingStart="10dp"
+
         android:text="userName"
+        android:textColor="@android:color/black"
         android:textSize="12dp" />
 
     <TextView
