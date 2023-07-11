@@ -47,7 +47,7 @@
 <br />
 </table>
 </details>
-## Team Members:
+* Team Members:
 
 * [Basel Abu Hamed](https://github.com/BaselAbuHamed)
 * [Lotfi Qasim](https://github.com/lutfiqasim)
