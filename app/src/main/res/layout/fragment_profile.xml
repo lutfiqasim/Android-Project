@@ -68,7 +68,7 @@
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent"
-                                tools:srcCompat="@tools:sample/avatars" />
+                                tools:srcCompat="@drawable/boy" />
 
                         </androidx.cardview.widget.CardView>
 
@@ -211,45 +211,7 @@
                                         android:textStyle="bold" />
                                 </LinearLayout>
 
-                                <LinearLayout
-                                    android:id="@+id/settings"
-                                    android:layout_width="0dp"
-                                    android:layout_height="match_parent"
-                                    android:layout_margin="10dp"
-                                    android:layout_weight="0.333"
-                                    android:background="@drawable/gray_background"
-                                    android:elevation="5dp"
-                                    android:orientation="vertical">
 
-                                    <androidx.constraintlayout.widget.ConstraintLayout
-                                        android:layout_width="80dp"
-                                        android:layout_height="80dp"
-                                        android:layout_gravity="center_horizontal"
-                                        android:layout_margin="12dp"
-                                        android:background="@drawable/circle_background">
-
-                                        <ImageView
-                                            android:id="@+id/imageView5"
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            app:layout_constraintBottom_toBottomOf="parent"
-                                            app:layout_constraintEnd_toEndOf="parent"
-                                            app:layout_constraintStart_toStartOf="parent"
-                                            app:layout_constraintTop_toTopOf="parent"
-                                            app:srcCompat="@drawable/settings" />
-                                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                                    <TextView
-                                        android:id="@+id/textView3"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_margin="8dp"
-                                        android:text="Settings"
-                                        android:textAlignment="center"
-                                        android:textColor="@color/black"
-                                        android:textSize="13sp"
-                                        android:textStyle="bold" />
-                                </LinearLayout>
 
                             </LinearLayout>
 
@@ -344,7 +306,7 @@
                                     android:textSize="18sp" />
 
                                 <TextView
-                                    android:id="@+id/textView11"
+                                    android:id="@+id/major"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
@@ -398,18 +360,6 @@
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <Button
-                    android:id="@+id/edit"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="24dp"
-                    android:background="@drawable/background_button"
-                    android:text="Edit Profile"
-
-                    android:textColor="@color/white"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
 
             </LinearLayout>
 

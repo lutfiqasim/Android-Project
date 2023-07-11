@@ -106,7 +106,7 @@ public class Register extends AppCompatActivity {
     //Check for logging in or not in MySQL DATA base
     private class SignupAsyncTask extends AsyncTask<String, Void, String> {
 
-        private static final String SIGNUP_URL = "http://192.168.1.44:1234/androidProj/signup.php";
+        private static final String SIGNUP_URL = "http://192.168.1.111/androidProj/signup.php";
         private String emailU;
         private String passwordU;
         private String Uname;
