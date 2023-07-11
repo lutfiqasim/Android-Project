@@ -10,6 +10,7 @@
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
     <string name="confirm_password">Confirm Password</string>
+    <string name="about_app">In the context of a university Android project, an application was developed to facilitate seamless communication and file sharing between students and their course instructor. The primary objective of this project was to create a user-friendly platform that would make it easier for students to interact with their major and simplify the process of sharing files. The application incorporated a chat feature, enabling students to engage in real-time conversations with their major. This chat functionality allowed students to seek guidance, ask questions, and receive prompt responses, thereby enhancing the learning experience. Additionally, the application included a file upload and download feature, enabling students to effortlessly share their work with their instructor and vice versa. This feature eliminated the need for traditional methods of file exchange, such as emails or physical copies, streamlining the workflow and promoting efficiency. By providing a convenient and efficient communication channel and file-sharing mechanism, the Android project successfully enhanced collaboration and fostered a conducive learning environment for the students involved.</string>
 
     <string-array name="days_of_week">
         <item>Monday</item>

@@ -63,11 +63,13 @@ public class Register extends AppCompatActivity {
         signupbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 String Uname = userName.getText().toString();
-                String Uemail = email.getText().toString();
+                String Uemail = email.getText().toString().toLowerCase();
                 String Upass = pass.getText().toString();
                 String reEnterpass = passRe.getText().toString();
                 String Umajor = major.getSelectedItem().toString();
+
                 if (Uname.matches("")) {
                     userName.setError("Enter user name");
                 } else if (Uemail.matches("")) {
@@ -103,7 +105,8 @@ public class Register extends AppCompatActivity {
 
     //Check for logging in or not in MySQL DATA base
     private class SignupAsyncTask extends AsyncTask<String, Void, String> {
-        private static final String SIGNUP_URL = "http://192.168.1.25:1234/androidProj/signup.php";
+
+        private static final String SIGNUP_URL = "http://192.168.1.44:1234/androidProj/signup.php";
         private String emailU;
         private String passwordU;
         private String Uname;
@@ -165,7 +168,6 @@ public class Register extends AppCompatActivity {
         }
 
         private void signUpToFirebase() {
-
             firebaseAuth = FirebaseAuth.getInstance();
             firebaseAuth.createUserWithEmailAndPassword(emailU, passwordU)
                     .addOnCompleteListener(Register.this, new OnCompleteListener<AuthResult>() {
@@ -173,9 +175,9 @@ public class Register extends AppCompatActivity {
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
                                 // Sign up success
-                                Intent intent = new Intent(Register.this, ChatWindow.class);
-                                intent.putExtra("User-id", firebaseAuth.getUid());
+                                Intent intent = new Intent(Register.this, LoginPage.class);
                                 startActivity(intent);
+                                finish();
                             } else {
                                 // Sign up failed
                                 if (task.getException() != null) {

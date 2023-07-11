@@ -21,8 +21,10 @@
             android:orientation="horizontal">
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/chat"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
+
 
                 <ImageView
                     android:id="@+id/imageView3"
@@ -32,9 +34,24 @@
                     android:scaleType="centerCrop"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.0"
                     app:srcCompat="@drawable/circles" />
+
+                <ImageView
+                    android:id="@+id/chats"
+                    android:layout_width="55dp"
+                    android:layout_height="51dp"
+                    android:layout_marginTop="24dp"
+                    android:src="@drawable/chat"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.955"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </LinearLayout>

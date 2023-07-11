@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="8dp">
+
     <androidx.cardview.widget.CardView
         android:id="@+id/imageCard"
         android:layout_width="60dp"
@@ -47,15 +48,15 @@
         android:id="@+id/senderName"
         android:layout_width="120dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="0dp"
+        android:layout_marginVertical="4dp"
+        android:layout_marginLeft="-15dp"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="-5dp"
         android:layout_toRightOf="@id/imageCard"
         android:fontFamily="sans-serif"
-        android:textColor="@android:color/black"
         android:paddingStart="3dp"
-        android:layout_marginVertical="4dp"
         android:text="userName"
+        android:textColor="@android:color/black"
         android:textSize="12dp" />
 
     <TextView
