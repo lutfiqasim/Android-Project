@@ -17,6 +17,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     private LinearLayout ee;
     private ImageView chats;
 
+    /*set a click listener for a chats button to launch the ChatWindow activity.*/
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

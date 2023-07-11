@@ -67,7 +67,7 @@
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent"
-                                tools:srcCompat="@tools:sample/avatars" />
+                                tools:srcCompat="@drawable/boy" />
 
                         </androidx.cardview.widget.CardView>
 
@@ -342,12 +342,13 @@
                                 android:orientation="horizontal">
 
                                 <TextView
-                                    android:id="@+id/textView11"
+                                    android:id="@+id/helpSupport"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
                                     android:text="Help and Support"
                                     android:textColor="#182693"
+                                    android:onClick="sendEmail"
                                     android:textSize="18sp" />
 
                             </LinearLayout>

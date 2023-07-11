@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ChatProject</string>
+    <string name="app_name">University App</string>
     <string name="title_activity_add_user_test">AddUserTestActivity</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
