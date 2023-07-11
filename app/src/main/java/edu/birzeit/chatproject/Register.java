@@ -38,6 +38,16 @@ public class Register extends AppCompatActivity {
     private String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
     FirebaseAuth firebaseAuth;
     FirebaseDatabase database;
+    private String savedEmail;
+    private String savedPassword;
+    private String savedPasswordRe;
+    private String savedUser;
+
+    private static final String EMAIL_KEY = "email";
+    private static final String PASSWORD_KEY = "password";
+    private static final String RePASSWORD_KEY = "Repassword";
+    private static final String SAVED_USER = "userName";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,7 +99,24 @@ public class Register extends AppCompatActivity {
             }
         });
 
+        // Restore saved email and password if available
+        if (savedInstanceState != null) {
+            savedEmail = savedInstanceState.getString(EMAIL_KEY);
+            savedPassword = savedInstanceState.getString(PASSWORD_KEY);
+            savedUser = savedInstanceState.getString(SAVED_USER);
+            savedPasswordRe = savedInstanceState.getString(RePASSWORD_KEY);
+        }
 
+        if (savedEmail != null && savedPassword != null) {
+            email.setText(savedEmail);
+            pass.setText(savedPassword);
+        }
+        if (savedUser != null) {
+            userName.setText(savedUser);
+        }
+        if (savedPasswordRe != null) {
+            passRe.setText(savedPasswordRe);
+        }
 //                singUP.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View view) {
@@ -99,6 +126,25 @@ public class Register extends AppCompatActivity {
 //
 //         }
 //        });
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        savedEmail = email.getText().toString();
+        savedPassword = pass.getText().toString();
+        savedPasswordRe = passRe.getText().toString();
+        savedUser = userName.getText().toString();
+
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putString(EMAIL_KEY, savedEmail);
+        outState.putString(PASSWORD_KEY, savedPassword);
+        outState.putString(RePASSWORD_KEY, savedPasswordRe);
+        outState.putString(SAVED_USER, savedUser);
     }
 
     //Check for logging in or not in MySQL DATA base

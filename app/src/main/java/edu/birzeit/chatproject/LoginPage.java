@@ -35,13 +35,17 @@ public class LoginPage extends AppCompatActivity {
     //And I need you to link this with mysql so i can also check for logins in firebase authintecation
     //We need Email and password to be saved in sharedPreferences and
     //Move with intents (userName), so we could use it in system messsages
-    EditText email;
-    EditText pass;
-    Button signIn;
-    TextView singIN;
-    FirebaseAuth firebaseAuth;
-    FirebaseDatabase database;
-    String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+    private EditText email;
+    private EditText pass;
+    private Button signIn;
+    private TextView singIN;
+    private String savedEmail;
+    private String savedPassword;
+    private static final String EMAIL_KEY = "email";
+    private static final String PASSWORD_KEY = "password";
+    private FirebaseAuth firebaseAuth;
+    private FirebaseDatabase database;
+    private String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,6 +87,38 @@ public class LoginPage extends AppCompatActivity {
                 }
             }
         });
+
+        // Restore saved email and password if available
+        if (savedInstanceState != null) {
+            savedEmail = savedInstanceState.getString(EMAIL_KEY);
+            savedPassword = savedInstanceState.getString(PASSWORD_KEY);
+        }
+
+        if (savedEmail != null && savedPassword != null) {
+            email.setText(savedEmail);
+            pass.setText(savedPassword);
+        }
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        savedEmail = email.getText().toString();
+        savedPassword = pass.getText().toString();
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putString(EMAIL_KEY, savedEmail);
+        outState.putString(PASSWORD_KEY, savedPassword);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        savedEmail = savedInstanceState.getString("email");
+        savedPassword = savedInstanceState.getString("password");
     }
 
     private void checkLoggedIn() {
