@@ -28,9 +28,7 @@ public class HomePage extends AppCompatActivity {
                 case R.id.home:
                     replaceFragment(new HomeFragment());
                     break;
-                case R.id.chat:
-                    replaceFragment(new ChatFragment());
-                    break;
+
                 case R.id.profile:
                     replaceFragment(new ProfileFragment());
                     break;
