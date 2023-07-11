@@ -7,16 +7,8 @@
 <summary><b> Random ScreenShots ✔⭐</b></summary>
 <table>
   <thead>
- </p> 
-   <td> 
+ </p>
     ![1](https://github.com/lutfiqasim/Android-Project/assets/107325485/ebe58b42-492e-45b4-a11d-a9e837a78df9)
-</td>
- 
- ***
- ***
- 
-
-
 <br />
 </table>
 </details>
