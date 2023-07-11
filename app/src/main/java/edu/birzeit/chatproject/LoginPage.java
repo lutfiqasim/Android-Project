@@ -21,6 +21,9 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
@@ -54,7 +57,7 @@ public class LoginPage extends AppCompatActivity {
         singIN = findViewById(R.id.SignUP);
         firebaseAuth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();
-        checkLoggedIn();
+//        checkLoggedIn();
         singIN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -131,7 +134,7 @@ public class LoginPage extends AppCompatActivity {
 
     //Check for logging in or not in MySQL DATA base
     private class SignINAsyncTask extends AsyncTask<String, Void, String> {
-        private static final String SIGNIN_URL = "http://192.168.1.47/androidProj/login.php";
+        private static final String SIGNIN_URL = "http://192.168.1.44:1234/androidProj/login.php";//192.168.1.25:1234 --192.168.1.111
         private String emailU;
         private String passwordU;
 
@@ -175,13 +178,35 @@ public class LoginPage extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String result) {
-            if (result != null && result.equals("logged In")) {//For the other uses of firebase i also want to mark user loged in on firebase here
-                signInToFireBase();
+            if (result != null && !result.equals("Invalid email or password")) {
+                try {
+                    // Parse the JSON response
+                    JSONObject studentObject = new JSONObject(result);
+                    String name = studentObject.getString("name");
+                    String email = studentObject.getString("email");
+                    String password = studentObject.getString("password");
+                    String major = studentObject.getString("specialization");
+                    // Save the data to SharedPreferences
+                    SharedPreferences sharedPreferences = getSharedPreferences("LoggedIn", Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putBoolean("loginStatus", true);
+                    editor.putString("name", name);
+                    editor.putString("email", email);
+                    editor.putString("password", password);
+                    editor.putString("major", major);
+                    editor.apply();
+                    // Proceed with Firebase sign-in
+                    signInToFireBase();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    Toast.makeText(LoginPage.this, "Invalid response format", Toast.LENGTH_SHORT).show();
+                }
             } else {
                 Log.e("post", result + "");
                 Toast.makeText(LoginPage.this, "SignIn failed. Please try again", Toast.LENGTH_SHORT).show();
             }
         }
+
 
         private void signInToFireBase() {
             firebaseAuth.signInWithEmailAndPassword(emailU, passwordU).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
