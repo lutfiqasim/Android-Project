@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="edu.birzeit.chatproject">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -41,6 +43,20 @@
             android:name=".ScheduleWindow"
             android:exported="false"
             android:screenOrientation="landscape" />
+        <activity
+            android:name=".CourseActivity"
+            android:exported="true"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="http" />
+                <data android:scheme="https" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".LoginPage"
             android:exported="true"
